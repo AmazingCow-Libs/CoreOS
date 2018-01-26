@@ -23,14 +23,14 @@ namespace OSInfo
     //------------------------------------------------------------------------//
     //                                                                        //
     //------------------------------------------------------------------------//
-    const std::string& KernelName      () noexcept;
-    const std::string& KernelRelease   () noexcept;
-    const std::string& KernelVersion   () noexcept;
-    const std::string& Machine         () noexcept;
-    const std::string& Nodename        () noexcept;
-    const std::string& Processor       () noexcept;
-    const std::string& HardwarePlatform() noexcept;
-    const std::string& OperatingSystem () noexcept;
+    std::string KernelName      () noexcept;
+    std::string KernelRelease   () noexcept;
+    std::string KernelVersion   () noexcept;
+    std::string Machine         () noexcept;
+    std::string Nodename        () noexcept;
+    std::string Processor       () noexcept;
+    std::string HardwarePlatform() noexcept;
+    std::string OperatingSystem () noexcept;
 
 } // namespace OSInfo
 NS_COREOS_END

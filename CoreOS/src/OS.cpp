@@ -3,6 +3,8 @@
 #include "../include/OS.h"
 // Amazing Cow Libs
 #include "acow/cpp_goodies.h"
+#include "acow/utsname.h"
+
 
 bool CoreOS::OSInfo::IsBSD() noexcept
 {
@@ -33,4 +35,63 @@ bool CoreOS::OSInfo::IsUnix() noexcept
 const std::string& CoreOS::OSInfo::GetOSName() noexcept
 {
     return "";
+}
+
+
+//----------------------------------------------------------------------------//
+//                                                                            //
+//----------------------------------------------------------------------------//
+std::string CoreOS::OSInfo::KernelName() noexcept
+{
+    utsname name = {};
+    uname(&name);
+
+    return name.sysname;
+}
+
+std::string CoreOS::OSInfo::KernelRelease() noexcept
+{
+    utsname name = {};
+    uname(&name);
+
+    return name.release;
+}
+
+std::string CoreOS::OSInfo::KernelVersion() noexcept
+{
+    utsname name = {};
+    uname(&name);
+
+    return name.version;
+}
+
+std::string CoreOS::OSInfo::Machine() noexcept
+{
+    utsname name = {};
+    uname(&name);
+    
+    return name.machine;
+}
+
+std::string CoreOS::OSInfo::Nodename() noexcept
+{
+    utsname name = {};
+    uname(&name);
+
+    return name.nodename;
+}
+
+std::string CoreOS::OSInfo::Processor() noexcept
+{    
+    return "";
+}
+
+std::string CoreOS::OSInfo::HardwarePlatform() noexcept
+{
+    return "";
+}
+
+std::string CoreOS::OSInfo::OperatingSystem() noexcept
+{
+    return KernelName();
 }
