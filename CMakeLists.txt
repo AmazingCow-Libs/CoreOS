@@ -8,48 +8,51 @@
 ##                    |__| |__||_______||_______||__| |__|                    ##
 ##                             www.amazingcow.com                             ##
 ##  File      : CMakeLists.txt                                                ##
-##  Project   : Cosmic Intruders                                              ##
-##  Date      : Nov 17, 2017                                                  ##
+##  Project   : acow_cpp_goodies                                              ##
+##  Date      : Feb 19, 2018                                                  ##
 ##  License   : GPLv3                                                         ##
 ##  Author    : n2omatt <n2omatt@amazingcow.com>                              ##
-##  Copyright : AmazingCow - 2017                                             ##
+##  Copyright : AmazingCow - 2018                                             ##
 ##                                                                            ##
 ##  Description :                                                             ##
 ##                                                                            ##
 ##---------------------------------------------------------------------------~##
 
 cmake_minimum_required(VERSION 3.5)
-project(CoreOS)
-
-##----------------------------------------------------------------------------##
-## Compiler Definitions                                                       ##
-##----------------------------------------------------------------------------##
-set(CMAKE_CXX_STANDARD 11)
 
 
 ##----------------------------------------------------------------------------##
-## Include Directories                                                        ##
+## Project                                                                    ##
 ##----------------------------------------------------------------------------##
-include_directories(
-    libs/acow_cpp_goodies
-    libs/CoreAssert
-)
+set(PROJECT acow_OS)
+project(${PROJECT})
+
 
 ##----------------------------------------------------------------------------##
-## Source Files                                                               ##
+## Sources                                                                    ##
 ##----------------------------------------------------------------------------##
-set(SOURCE_FILES
-    ## CoreAssert
-    libs/CoreAssert/CoreAssert/src/private/PrivateHelpers.cpp
-
-    ## CoreOS
-    CoreOS/src/OS.cpp
-
-    test/main.cpp
+##------------------------------------------------------------------------------
+## Sources
+set(SOURCES
+    acow/src/Windows.cpp    
 )
 
 
 ##----------------------------------------------------------------------------##
-## Executable Definitions                                                     ##
+## Library                                                                    ##
 ##----------------------------------------------------------------------------##
-add_executable(CoreOS ${SOURCE_FILES})
+##------------------------------------------------------------------------------
+## Lib.
+add_library(${PROJECT} ${SOURCES})
+
+
+##-----------------------------------------------------------------------------
+## Include directories.
+target_include_directories(${PROJECT} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+##------------------------------------------------------------------------------
+## Dependencies.
+target_link_libraries(${PROJECT} LINK_PUBLIC acow_c_goodies  )
+target_link_libraries(${PROJECT} LINK_PUBLIC acow_cpp_goodies)
+target_link_libraries(${PROJECT} LINK_PUBLIC acow_posix_cross)
